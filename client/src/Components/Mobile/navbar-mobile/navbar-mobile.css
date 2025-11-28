@@ -1,0 +1,11 @@
+.container{
+    display: flex;
+    justify-content: space-between;
+    position: fixed;
+    width: 100vw;
+    padding: 15px 0px;
+}
+
+.logo{
+    padding-left: 5px;
+}

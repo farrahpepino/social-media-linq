@@ -1,0 +1,14 @@
+.container{
+    padding: 15px;
+    background-color: #0d0d0d;
+    height: 98%;
+    width: 200px;
+    color: white;
+    border-top-right-radius: 25px;
+    border-bottom-right-radius: 25px;
+    position: fixed;
+}
+
+button{
+    color: white;
+}
