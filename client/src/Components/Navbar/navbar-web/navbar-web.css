@@ -12,3 +12,17 @@
 button{
     color: white;
 }
+
+.search{
+    position: fixed;
+    top: 10px;
+    right: 10px;
+    width: 30rem;
+    padding: 8px 20px;
+    border-radius: 0;
+    border: 1px solid;
+    outline: none;
+    background-color: white;
+    z-index: 10001;
+
+}
