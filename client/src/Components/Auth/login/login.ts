@@ -1,7 +1,7 @@
 import { CommonModule } from '@angular/common';
 import { Component } from '@angular/core';
 import { ReactiveFormsModule, FormGroup, FormControl, AbstractControl, ValidationErrors } from '@angular/forms';
-FormGroup
+import { Output, EventEmitter } from '@angular/core';
 @Component({
   selector: 'app-login',
   imports: [CommonModule, ReactiveFormsModule],
@@ -9,6 +9,11 @@ FormGroup
   styleUrl: './login.css',
 })
 export class Login {
+  @Output() register = new EventEmitter<boolean>();
+
+  goToRegister(): void{
+    this.register.emit(true);
+  }
 
   loginForm = new FormGroup({
     email: new FormControl(''),

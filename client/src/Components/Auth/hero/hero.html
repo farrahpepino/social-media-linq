@@ -2,7 +2,8 @@
     <div class="header">
         <p class="logo">R A D I I</p>
     </div>
-    <div class="content">
-        <app-login/>
+    <div class="content">s
+        <app-register *ngIf="showRegister" (login)="handleAuthLogIn($event)"></app-register>
+        <app-login *ngIf="!showRegister" (register)="handleAuthRegister($event)"></app-login>
     </div>  
 </body>

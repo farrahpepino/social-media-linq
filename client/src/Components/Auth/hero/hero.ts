@@ -1,18 +1,27 @@
 import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { Login } from '../login/login';
+import { Register } from '../register/register';
 
 @Component({
   selector: 'app-hero',
   standalone: true,
-  imports: [Login, CommonModule],
+  imports: [Login, CommonModule, Register],
   templateUrl: './hero.html',
   styleUrl: './hero.css',
 })
 export class Hero {
-  showLogin = true;
+  showRegister: boolean = true;
+
   
-  toggleForm(){
-    this.showLogin = !this.showLogin;
+  handleAuthLogIn(_: boolean) {
+    this.showRegister = false; 
   }
+  
+  handleAuthRegister(_: boolean) {
+    this.showRegister = true;  
+  }
+  
+  
+  
 }
