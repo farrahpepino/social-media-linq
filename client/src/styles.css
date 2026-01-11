@@ -227,7 +227,7 @@ input::placeholder{
   position: fixed;
   top: 70px;
   left: 15px;
-  width: 85%;
+  width: 56rem;
   height: 30rem;
   contain: strict;
   overflow-y: auto;
