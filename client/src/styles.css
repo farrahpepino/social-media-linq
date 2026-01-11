@@ -224,11 +224,14 @@ input::placeholder{
 .editable {
   padding: 10px;
   outline: none;
-  postion: fixed;
-  top: 50px;
+  position: fixed;
+  top: 70px;
   left: 15px;
+  width: 85%;
+  height: 30rem;
   contain: strict;
   overflow-y: auto;
+  overflow-x: hidden;
 }
 
 .editable:empty::before {
