@@ -102,3 +102,10 @@
 /Users/farrahpepino/Documents/GitHub/social-media-linq/server/obj/Debug/net9.0/server.pdb
 /Users/farrahpepino/Documents/GitHub/social-media-linq/server/obj/Debug/net9.0/server.genruntimeconfig.cache
 /Users/farrahpepino/Documents/GitHub/social-media-linq/server/obj/Debug/net9.0/ref/server.dll
+/Users/farrahpepino/Documents/GitHub/social-media-linq/server/bin/Debug/net9.0/Microsoft.Extensions.DependencyInjection.dll
+/Users/farrahpepino/Documents/GitHub/social-media-linq/server/bin/Debug/net9.0/Microsoft.Extensions.DependencyInjection.Abstractions.dll
+/Users/farrahpepino/Documents/GitHub/social-media-linq/server/bin/Debug/net9.0/Microsoft.Extensions.Logging.dll
+/Users/farrahpepino/Documents/GitHub/social-media-linq/server/bin/Debug/net9.0/Microsoft.Extensions.Logging.Abstractions.dll
+/Users/farrahpepino/Documents/GitHub/social-media-linq/server/bin/Debug/net9.0/Microsoft.Extensions.Options.dll
+/Users/farrahpepino/Documents/GitHub/social-media-linq/server/bin/Debug/net9.0/Microsoft.Extensions.Primitives.dll
+/Users/farrahpepino/Documents/GitHub/social-media-linq/server/bin/Debug/net9.0/System.Diagnostics.DiagnosticSource.dll

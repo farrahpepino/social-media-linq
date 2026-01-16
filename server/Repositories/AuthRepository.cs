@@ -16,7 +16,7 @@ namespace server.Repositories {
             var existingUser = await _context.Users.FirstOrDefaultAsync(u => u.Email == user.Email);
             
             if (existingUser != null) {
-                return;
+                return; // fix this
             }
 
             _context.Add(user);
