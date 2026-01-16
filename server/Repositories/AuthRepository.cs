@@ -15,9 +15,10 @@ namespace server.Repositories {
         public async Task RegisterUser(User user) {
             var existingUser = await _context.Users.FirstOrDefaultAsync(u => u.Email == user.Email);
             
-            if (existingUser != null) {
-                return; // fix this
-            }
+            // fix this. should return tokens
+            // if (existingUser != null) {
+            //     return; 
+            // }
 
             _context.Add(user);
             await _context.SaveChangesAsync();
