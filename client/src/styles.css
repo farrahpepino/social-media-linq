@@ -1,6 +1,5 @@
 html, body { height: 100%; }
 body{
-    /* font-family: Roboto, "Helvetica Neue", sans-serif;  */
     font-family: Arial;
     font-size: 16px;
     margin: 0;
@@ -18,7 +17,6 @@ body{
 }
 
 button{
-  /* font-family: Roboto, "Helvetica Neue", sans-serif;  */
   padding-top: 7px;
   font-family: Arial;
 }
@@ -116,12 +114,10 @@ hr{
 }
 
 input{
-  /* font-family: Roboto, "Helvetica Neue", sans-serif;  */
   font-family: Arial;
 }
 
 input::placeholder{
-  /* font-family: Roboto, "Helvetica Neue", sans-serif;  */
   font-family: Arial;
 }
 
