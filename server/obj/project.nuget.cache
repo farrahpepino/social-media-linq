@@ -1,9 +1,10 @@
 {
   "version": 2,
-  "dgSpecHash": "V+r6UR3vewY=",
+  "dgSpecHash": "aHjj0OYBv6k=",
   "success": true,
   "projectFilePath": "/Users/farrahpepino/Documents/GitHub/social-media-linq/server/server.csproj",
   "expectedPackageFiles": [
+    "/Users/farrahpepino/.nuget/packages/bcrypt.net-next/4.0.3/bcrypt.net-next.4.0.3.nupkg.sha512",
     "/Users/farrahpepino/.nuget/packages/humanizer.core/2.14.1/humanizer.core.2.14.1.nupkg.sha512",
     "/Users/farrahpepino/.nuget/packages/microsoft.aspnetcore.antiforgery/2.3.0/microsoft.aspnetcore.antiforgery.2.3.0.nupkg.sha512",
     "/Users/farrahpepino/.nuget/packages/microsoft.aspnetcore.authentication.abstractions/2.3.0/microsoft.aspnetcore.authentication.abstractions.2.3.0.nupkg.sha512",

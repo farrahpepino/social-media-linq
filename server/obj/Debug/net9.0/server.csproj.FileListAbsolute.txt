@@ -101,3 +101,4 @@
 /Users/farrahpepino/Documents/GitHub/social-media-linq/server/bin/Debug/net9.0/Newtonsoft.Json.Bson.dll
 /Users/farrahpepino/Documents/GitHub/social-media-linq/server/obj/Debug/net9.0/server.RazorAssemblyInfo.cache
 /Users/farrahpepino/Documents/GitHub/social-media-linq/server/obj/Debug/net9.0/server.RazorAssemblyInfo.cs
+/Users/farrahpepino/Documents/GitHub/social-media-linq/server/bin/Debug/net9.0/BCrypt.Net-Next.dll

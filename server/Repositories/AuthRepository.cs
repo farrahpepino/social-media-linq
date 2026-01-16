@@ -1,5 +1,6 @@
 using Microsoft.EntityFrameworkCore;
 using server.Data;
+using server.Dto;
 using server.Models;
 using server.Helpers;
 
@@ -18,13 +19,12 @@ namespace server.Repositories {
                 return;
             }
 
-            user.Password = PasswordAuthenticator.HashPassword(user.Password);
             _context.Add(user);
             await _context.SaveChangesAsync();
         }
 
-        public async Task LoginUser(LoginDto user) { 
-            var existingUser = _context.Users.FirstOrDefaultAsync(u => u.Email == user.Email);
+        public async Task<bool> LoginUser(LoginDto user) { 
+            var existingUser = await _context.Users.FirstOrDefaultAsync(u => u.Email == user.Email);
             
             if (existingUser == null){
                 return false;
