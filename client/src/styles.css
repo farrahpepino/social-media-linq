@@ -1,9 +1,9 @@
 html, body { height: 100%; }
 body{
-    font-family: Roboto, "Helvetica Neue", sans-serif; 
+    /* font-family: Roboto, "Helvetica Neue", sans-serif;  */
+    font-family: Arial;
     font-size: 16px;
     margin: 0;
-    font-weight: 100;
 }
 
 .backdrop {
@@ -18,8 +18,9 @@ body{
 }
 
 button{
-  font-family: Roboto, "Helvetica Neue", sans-serif; 
+  /* font-family: Roboto, "Helvetica Neue", sans-serif;  */
   padding-top: 7px;
+  font-family: Arial;
 }
 
 button:hover{
@@ -111,19 +112,17 @@ hr{
   background-color: transparent;
   color: black;
   width: 100%;
-  font-weight: 100;
   font-size: 16px;
 }
 
 input{
-  font-family: Roboto, "Helvetica Neue", sans-serif; 
-  font-weight: 100;
-
+  /* font-family: Roboto, "Helvetica Neue", sans-serif;  */
+  font-family: Arial;
 }
 
 input::placeholder{
-  font-family: Roboto, "Helvetica Neue", sans-serif; 
-  font-weight: 100;
+  /* font-family: Roboto, "Helvetica Neue", sans-serif;  */
+  font-family: Arial;
 }
 
 .logo{
