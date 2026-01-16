@@ -6,9 +6,9 @@ using server.Helpers;
 
 namespace server.Services {
     public class AuthService : IAuthService {
-        private readonly AuthRepository _repository;
+        private readonly IAuthRepository _repository;
 
-        public AuthService (AuthRepository repository){
+        public AuthService (IAuthRepository repository){
             _repository = repository;
         }
 
