@@ -107,6 +107,7 @@ hr{
   padding: 10px;
   padding-right:0px;
   border-radius: 20px;
+  border-color: transparent;
   background-color: transparent;
   color: black;
   width: 100%;
@@ -184,9 +185,9 @@ input::placeholder{
 }
 
 .inp{
-  border-color: #8e918f;
   font-size: 14px;
   outline: none;
+  border-color: transparent;
 }
 
 .parent{
