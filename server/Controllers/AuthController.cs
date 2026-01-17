@@ -18,22 +18,24 @@ namespace server.Controllers {
 
         [HttpPost("register")]
         public async Task<IActionResult> RegisterUser([FromBody] User user) {
-            await _service.RegisterUser(user);
+            var result = await _service.RegisterUser(user);
 
-            // fix this
+            if (result!=null){
+                return Ok(result);
+            }
 
-            return Ok(user);
+            return BadRequest("You already have an account with this email or username.");
         }
 
         [HttpPost("login")]
         public async Task<IActionResult> LoginUser([FromBody] LoginDto user) {
-            var exists = await _service.LoginUser(user);
+            var result = await _service.LoginUser(user);
 
-            if(!exists) {
+            if(result==null) {
                 return BadRequest("Incorrect password or email.");
             }
 
-            return Ok(user);
+            return Ok(result);
 
         }
 

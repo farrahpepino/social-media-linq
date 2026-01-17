@@ -12,26 +12,34 @@ namespace server.Repositories {
             _context = context;
         }
 
-        public async Task RegisterUser(User user) {
+        public async Task<UserDto?> RegisterUser(User user) {
             var existingUser = await _context.Users.FirstOrDefaultAsync(u => u.Email == user.Email);
             
-            // fix this. should return tokens
             if (existingUser != null) {
-                return; 
+                return null; 
             }
 
             _context.Add(user);
             await _context.SaveChangesAsync();
+            return new UserDto{
+                Id = user.Id,
+                Username = user.Username,
+                Email = user.Email
+            }
         }
 
-        public async Task<bool> LoginUser(LoginDto user) { 
+        public async Task<UserDto?> LoginUser(LoginDto user) { 
             var existingUser = await _context.Users.FirstOrDefaultAsync(u => u.Email == user.Email);
-            
-            if (existingUser == null){
-                return false;
+        
+            if (PasswordAuthenticator.VerifyPassword(user.Password, existingUser.Password)) {
+                return new UserDto {
+                    Id = existingUser.Id,
+                    Username = existingUser.Username,
+                    Email = existingUser.Email
+                }
             }
 
-            return PasswordAuthenticator.VerifyPassword(user.Password, existingUser.Password);
+            return null;
         }
     }
 }

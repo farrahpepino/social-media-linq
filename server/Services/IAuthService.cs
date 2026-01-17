@@ -3,7 +3,7 @@ using server.Models;
 
 namespace server.Services {
     public interface IAuthService {
-        Task RegisterUser (User User);
-        Task<bool> LoginUser (LoginDto user);
+        Task<UserDto?> RegisterUser (User User);
+        Task<UserDto?> LoginUser (LoginDto user);
     }
 }
