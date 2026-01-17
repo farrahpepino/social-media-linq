@@ -25,7 +25,7 @@ namespace server.Repositories {
                 Id = user.Id,
                 Username = user.Username,
                 Email = user.Email
-            }
+            };
         }
 
         public async Task<UserDto?> LoginUser(LoginDto user) { 
@@ -36,7 +36,7 @@ namespace server.Repositories {
                     Id = existingUser.Id,
                     Username = existingUser.Username,
                     Email = existingUser.Email
-                }
+                };
             }
 
             return null;

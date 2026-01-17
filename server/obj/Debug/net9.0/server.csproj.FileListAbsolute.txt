@@ -109,3 +109,10 @@
 /Users/farrahpepino/Documents/GitHub/social-media-linq/server/bin/Debug/net9.0/Microsoft.Extensions.Options.dll
 /Users/farrahpepino/Documents/GitHub/social-media-linq/server/bin/Debug/net9.0/Microsoft.Extensions.Primitives.dll
 /Users/farrahpepino/Documents/GitHub/social-media-linq/server/bin/Debug/net9.0/System.Diagnostics.DiagnosticSource.dll
+/Users/farrahpepino/Documents/GitHub/social-media-linq/server/bin/Debug/net9.0/Microsoft.Extensions.Configuration.dll
+/Users/farrahpepino/Documents/GitHub/social-media-linq/server/bin/Debug/net9.0/Microsoft.Extensions.Configuration.Abstractions.dll
+/Users/farrahpepino/Documents/GitHub/social-media-linq/server/bin/Debug/net9.0/Microsoft.IdentityModel.Abstractions.dll
+/Users/farrahpepino/Documents/GitHub/social-media-linq/server/bin/Debug/net9.0/Microsoft.IdentityModel.JsonWebTokens.dll
+/Users/farrahpepino/Documents/GitHub/social-media-linq/server/bin/Debug/net9.0/Microsoft.IdentityModel.Logging.dll
+/Users/farrahpepino/Documents/GitHub/social-media-linq/server/bin/Debug/net9.0/Microsoft.IdentityModel.Tokens.dll
+/Users/farrahpepino/Documents/GitHub/social-media-linq/server/bin/Debug/net9.0/System.IdentityModel.Tokens.Jwt.dll

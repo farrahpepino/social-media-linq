@@ -7,22 +7,23 @@ using server.Helpers;
 namespace server.Services {
     public class AuthService : IAuthService {
         private readonly IAuthRepository _repository;
+        private readonly IJwtService _jwt;
 
-        public AuthService (IAuthRepository repository){
+        public AuthService (IAuthRepository repository, IJwtService jwt){
             _repository = repository;
+            _jwt = jwt;
         }
 
         public async Task<UserDto?> RegisterUser (User user){
             user.Password = PasswordAuthenticator.HashPassword(user.Password);
             var existingUser = await _repository.RegisterUser(user);
-
             if(existingUser!=null) {
                 return new UserDto {
                     Id = existingUser.Id,
                     Username = existingUser.Username,
                     Email = existingUser.Email,
-                    Token = JwtService.GenerateToken(existingUser.Id, existingUser.Username, existingUser.Email)
-                }
+                    Token = _jwt.GenerateToken(existingUser.Id, existingUser.Username, existingUser.Email)
+                };
             }
 
             return null;
@@ -37,8 +38,8 @@ namespace server.Services {
                     Id = existingUser.Id,
                     Username = existingUser.Username,
                     Email = existingUser.Email,
-                    Token = JwtService.GenerateToken(existingUser.Id, existingUser.Username, existingUser.Email)
-                }
+                    Token = _jwt.GenerateToken(existingUser.Id, existingUser.Username, existingUser.Email)
+                };
             }
 
             return null;
