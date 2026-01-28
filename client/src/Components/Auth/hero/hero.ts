@@ -2,11 +2,10 @@ import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { Login } from '../login/login';
 import { Register } from '../register/register';
-
 @Component({
   selector: 'app-hero',
   standalone: true,
-  imports: [Login, CommonModule, Register],
+  imports: [CommonModule, Register, Login],
   templateUrl: './hero.html',
   styleUrl: './hero.css',
 })
