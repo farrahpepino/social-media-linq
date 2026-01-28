@@ -1,12 +1,11 @@
 <div class="container">
   <h3>Sign in</h3>
-   <form action="">
+   <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
     <input type="text" placeholder="Username" class="inp">
     <input type="password" placeholder="Password" class="inp">
     <button type="submit" class="bt">log in</button>
    </form>
    <br>
    <button type="button" class="bt-transparent" (click)="goToRegister()">Create an account.</button>
-
 </div>
 

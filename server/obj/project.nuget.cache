@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "nErhCecIlJI=",
+  "dgSpecHash": "wtYtmg6vIY4=",
   "success": true,
-  "projectFilePath": "/Users/farrahpepino/Documents/GitHub/social-media-linq/server/server.csproj",
+  "projectFilePath": "/Users/farrahpepino/Documents/GitHub/social-media-linq-1/server/server.csproj",
   "expectedPackageFiles": [
     "/Users/farrahpepino/.nuget/packages/bcrypt.net-next/4.0.3/bcrypt.net-next.4.0.3.nupkg.sha512",
     "/Users/farrahpepino/.nuget/packages/humanizer.core/2.14.1/humanizer.core.2.14.1.nupkg.sha512",

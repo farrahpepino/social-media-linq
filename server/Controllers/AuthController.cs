@@ -18,26 +18,64 @@ namespace server.Controllers {
 
         [HttpPost("register")]
         public async Task<IActionResult> RegisterUser([FromBody] User user) {
-            var result = await _service.RegisterUser(user);
+            var token = await _service.RegisterUser(user);
 
-            if (result!=null){
-                return Ok(result);
+            if (token!=null){
+                Response.Cookies.Append("token", token, new CookieOptions
+                    {
+                        HttpOnly = true,
+                        Secure = false, // true in production
+                        SameSite = SameSiteMode.Strict,
+                        Expires = DateTime.Now.AddDays(7)
+                    });
+
+                return Ok(new { message = "Registered successfully" });
             }
 
-            return BadRequest("You already have an account with this email or username.");
+            return BadRequest("User already exists");
         }
 
         [HttpPost("login")]
         public async Task<IActionResult> LoginUser([FromBody] LoginDto user) {
-            var result = await _service.LoginUser(user);
+            var token = await _service.LoginUser(user);
 
-            if(result==null) {
-                return BadRequest("Incorrect password or email.");
+            if (token != null)
+            {
+                Response.Cookies.Append("token", token, new CookieOptions
+                {
+                    HttpOnly = true,
+                    Secure = false, // true in production
+                    SameSite = SameSiteMode.Strict,
+                    Expires = DateTime.Now.AddDays(7)
+                });
+
+                return Ok(new { message = "Logged in successfully" });
             }
 
-            return Ok(result);
-
+            return Unauthorized("Invalid credentials");
         }
 
+        [HttpGet("profile")]
+        public IActionResult Profile()
+        {
+            if (!Request.Cookies.TryGetValue("token", out var token))
+                return Unauthorized("No token");
+
+            var handler = new System.IdentityModel.Tokens.Jwt.JwtSecurityTokenHandler();
+            var jwtToken = handler.ReadJwtToken(token);
+
+            var userId = jwtToken.Claims.First(c => c.Type == System.IdentityModel.Tokens.Jwt.JwtRegisteredClaimNames.Sub).Value;
+            var username = jwtToken.Claims.First(c => c.Type == System.IdentityModel.Tokens.Jwt.JwtRegisteredClaimNames.UniqueName).Value;
+            var email = jwtToken.Claims.First(c => c.Type == System.IdentityModel.Tokens.Jwt.JwtRegisteredClaimNames.Email).Value;
+
+            return Ok(new { userId, username, email });
+        }
+
+        [HttpPost("logout")]
+        public IActionResult Logout()
+        {
+            Response.Cookies.Delete("token"); 
+            return Ok(new { message = "Logged out" });
+        }
     }
 }
