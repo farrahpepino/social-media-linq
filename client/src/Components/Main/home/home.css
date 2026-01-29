@@ -16,9 +16,6 @@ img{
     margin-bottom: 10px;
 }
 
- .text-content {
-}
-
 .post-header{
     display: flex;
     justify-content: space-between;
@@ -35,7 +32,7 @@ img{
     flex-direction: column;
 }
 
-@media(max-width: 950px){
+@media(max-width: 1100px){
     .container{
         justify-content: center;
         width: 100%;
@@ -51,7 +48,7 @@ img{
     }
 
     .post-container{
-        width: 90%;
+        width: 80%;
         margin: 0 auto;
         margin-bottom: 20px;
     }
