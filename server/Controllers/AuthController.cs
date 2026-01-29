@@ -5,10 +5,8 @@ using server.Dto;
 using System.IdentityModel.Tokens.Jwt;
 
 namespace server.Controllers {
-
-    [ApiController]
+    [Authorize]
     [Route("[controller]")]
-
     public class AuthController : ControllerBase {
         
         private IAuthService _service;
@@ -17,8 +15,10 @@ namespace server.Controllers {
             _service = service;
         }
 
+        [AllowAnonymous]
         [HttpPost("register")]
-        public async Task<IActionResult> RegisterUser([FromBody] User user) {
+        public async Task<IActionResult> RegisterUser([FromBody] RegisterDto user) {
+
             var token = await _service.RegisterUser(user);
 
             if (token!=null){
@@ -36,6 +36,7 @@ namespace server.Controllers {
             return BadRequest("User already exists");
         }
 
+        [AllowAnonymous]
         [HttpPost("login")]
         public async Task<IActionResult> LoginUser([FromBody] LoginDto user) {
             var token = await _service.LoginUser(user);
@@ -56,6 +57,13 @@ namespace server.Controllers {
             return Unauthorized("Invalid credentials");
         }
 
+
+        [HttpPost("logout")]
+        public IActionResult Logout(){
+            Response.Cookies.Delete("token"); 
+            return Ok(new { message = "Logged out" });
+        }
+
         [HttpGet("profile")]
         public IActionResult Profile()
         {
@@ -70,13 +78,6 @@ namespace server.Controllers {
             var email = jwtToken.Claims.First(c => c.Type == System.IdentityModel.Tokens.Jwt.JwtRegisteredClaimNames.Email).Value;
 
             return Ok(new { userId, username, email });
-        }
-
-        [HttpPost("logout")]
-        public IActionResult Logout()
-        {
-            Response.Cookies.Delete("token"); 
-            return Ok(new { message = "Logged out" });
         }
     }
 }

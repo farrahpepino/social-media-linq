@@ -14,7 +14,7 @@ namespace server.Services {
             _jwt = jwt;
         }
 
-        public async Task<string?> RegisterUser (User user){
+        public async Task<string?> RegisterUser (RegisterDto user){
             user.Password = PasswordAuthenticator.HashPassword(user.Password);
             var existingUser = await _repository.RegisterUser(user);
             if(existingUser!=null) {
@@ -25,7 +25,6 @@ namespace server.Services {
         }
 
         public async Task<string?> LoginUser (LoginDto user){
-            user.Password = PasswordAuthenticator.HashPassword(user.Password);
             var existingUser = await _repository.LoginUser(user);
 
             if(existingUser!=null) {

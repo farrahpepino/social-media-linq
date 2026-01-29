@@ -3,7 +3,7 @@ using server.Dto;
 
 namespace server.Repositories {
     public interface IAuthRepository {
-        Task<UserDto?> RegisterUser (User User);
+        Task<UserDto?> RegisterUser (RegisterDto User);
         Task<UserDto?> LoginUser (LoginDto user);
     }
 }

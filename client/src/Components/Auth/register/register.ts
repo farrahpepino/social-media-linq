@@ -29,12 +29,18 @@ export class Register {
     const username = this.registerForm.get('username')!.value!;
     const email = this.registerForm.get('email')!.value!;
     const password = this.registerForm.get('password')!.value!;
-    this.route.navigateByUrl('/home')
 
-    this.auth.register({username, email, password}).subscribe({
+    const user = {
+      username: username,
+      email: email,
+      password: password
+    };
+
+    this.auth.register(user).subscribe({
       next: (res) => {
         console.log('Register success', res);
-        // this.route.navigateByUrl('/home')
+        this.route.navigateByUrl('/home', { replaceUrl: true });
+        window.onpopstate = () => history.go(1);
       },
       error: (err) => {
         console.error('Register failed', err);
