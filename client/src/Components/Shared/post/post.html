@@ -4,8 +4,9 @@
 
 
 <form *ngIf="showForm">
-    <div class="form">
+    <div class="header-form">
         <strong>Farrah Pepino</strong>
+        <div class="subtext">{{ today | date: "MMM d, y 'at' h:mm a" }}</div>
         <button type="button" class="close-btn" (click)="toggleForm()">X</button>
     </div>
     <div

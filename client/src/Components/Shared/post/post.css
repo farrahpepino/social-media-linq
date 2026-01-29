@@ -39,7 +39,7 @@ form{
 
 .editable{
     position: fixed;
-    top: 40px;
+    top: 95px;
     left: 15px;
 }
 
@@ -58,7 +58,7 @@ form{
   }
   
 
-.form{
+.header-form{
     position: fixed;
     top: 20px;
     left: 25px;

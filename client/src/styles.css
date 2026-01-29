@@ -5,6 +5,11 @@ body{
     margin: 0;
 }
 
+.subtext {
+  color: gray;
+  font-size: 14;
+}
+
 .backdrop {
   position: fixed;
   top: 0;
