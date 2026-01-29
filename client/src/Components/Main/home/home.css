@@ -39,7 +39,7 @@ img{
 
 .container{
     position: absolute;
-    top: 60px;
+    top: 100px;
     width: 75%;
     display: flex;
     right: 0px;
@@ -59,7 +59,7 @@ img{
    .page {
     margin-bottom: 50px;
    }
-   
+
     img{
         width: 100%
     }
