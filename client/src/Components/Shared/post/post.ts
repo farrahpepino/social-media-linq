@@ -14,13 +14,20 @@ export class Post implements OnInit, OnDestroy {
   private timerId!: any;
 
   ngOnInit() {
-    this.timerId = setInterval(() => {
-      this.today = new Date();
-    }, 60000); 
+    this.updateTime();
   }
 
   ngOnDestroy() {
-    clearInterval(this.timerId);
+    clearTimeout(this.timerId);
+  }
+
+  private updateTime() {
+    this.today = new Date();
+
+    const now = new Date();
+    const delay = 3000 - (now.getTime() % 3000);
+
+    this.timerId = setTimeout(() => this.updateTime(), delay);
   }
   
   toggleForm() {
