@@ -1,8 +1,12 @@
 <div class="container">
     <div class="logo">R A D I I</div>
-    <input type="text" placeholder="SEARCH">
+    <input type="text" placeholder="SEARCH" class="search">
     <div>
         <button class="bt-transparent">PROFILE</button>
-        <button class="bt-transparent">SIGN OUT</button>
+        <button class="bt-transparent" type="button" (click)="signOut()">SIGN OUT</button>
+    </div>
+
+    <div *ngIf="loading" class="spinner">
+        <app-loading></app-loading>
     </div>
 </div>

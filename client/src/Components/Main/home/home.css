@@ -5,6 +5,21 @@ img{
     border-radius: 30px;
 }
 
+.page{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+    align-items: center;
+    width: 100%;
+    margin-bottom: 100px;
+}
+
+.page button {
+    background-color: transparent;
+    border: none;
+    color: gray; 
+}
+
 .img-container{
     display: flex;
     justify-content: center;
@@ -33,12 +48,18 @@ img{
 }
 
 @media(max-width: 1100px){
+
     .container{
         justify-content: center;
         width: 100%;
         margin: 0px;
+        margin-top: 50px;
     }
 
+   .page {
+    margin-bottom: 50px;
+   }
+   
     img{
         width: 100%
     }
