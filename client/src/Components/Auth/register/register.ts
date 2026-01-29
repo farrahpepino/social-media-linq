@@ -4,16 +4,20 @@ import { ReactiveFormsModule, FormGroup, FormControl} from '@angular/forms';
 import { Output, EventEmitter } from '@angular/core';
 import { AuthService } from '../../../Services/auth-service';
 import { Router } from '@angular/router';
+import { finalize } from 'rxjs';
+import { Loading } from '../../Shared/loading/loading';
+
 
 ReactiveFormsModule
 @Component({
   selector: 'app-register',
-  imports: [ReactiveFormsModule, CommonModule],
+  imports: [ReactiveFormsModule, CommonModule, Loading],
   templateUrl: './register.html',
   styleUrl: './register.css'
 })
 export class Register {
   @Output() login = new EventEmitter<boolean>();
+  loading = false;
   constructor (private auth: AuthService, private route: Router){}
   goToLogin(): void{
     this.login.emit(true);
@@ -36,10 +40,18 @@ export class Register {
       password: password
     };
 
-    this.auth.register(user).subscribe({
+    this.loading = true;
+
+    this.auth.register(user)
+    .pipe(
+      finalize(() => this.loading = false) 
+    )
+    .subscribe({
       next: (res) => {
         console.log('Register success', res);
-        this.route.navigateByUrl('/home', { replaceUrl: true });
+        this.route.navigateByUrl('/home').then(() => {
+          history.replaceState(null, '', '/home'); 
+        });      
       },
       error: (err) => {
         console.error('Register failed', err);

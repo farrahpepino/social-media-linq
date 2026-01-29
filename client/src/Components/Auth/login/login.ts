@@ -4,14 +4,18 @@ import { ReactiveFormsModule, FormGroup, FormControl, AbstractControl, Validatio
 import { Output, EventEmitter } from '@angular/core';
 import { AuthService } from '../../../Services/auth-service';
 import { Router } from '@angular/router';
+import { finalize } from 'rxjs';
+import { Loading } from '../../Shared/loading/loading';
+
 @Component({
   selector: 'app-login',
-  imports: [CommonModule, ReactiveFormsModule],
+  imports: [CommonModule, ReactiveFormsModule, Loading],
   templateUrl: './login.html',
   styleUrl: './login.css',
 })
 export class Login {
   @Output() register = new EventEmitter<boolean>();
+  loading = false;
   constructor (private auth: AuthService, private route: Router){}
 
   goToRegister(): void{
@@ -26,11 +30,18 @@ export class Login {
   onSubmit() {
     const email = this.loginForm.get('email')!.value!;
     const password = this.loginForm.get('password')!.value!;
+    this.loading = true;
 
-    this.auth.login({email, password}).subscribe({
+    this.auth.login({email, password})
+    .pipe(
+      finalize(() => this.loading = false) 
+    )
+    .subscribe({
       next: (res) => {
         console.log('Login success', res);
-        this.route.navigateByUrl('/home', { replaceUrl: true });
+        this.route.navigateByUrl('/home').then(() => {
+          history.replaceState(null, '', '/home'); 
+        }); 
       },
       error: (err) => {
         console.error('Login failed', err);

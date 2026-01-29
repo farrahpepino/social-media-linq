@@ -1,3 +1,4 @@
+using Microsoft.AspNetCore.Authorization;  
 using Microsoft.AspNetCore.Mvc;
 using server.Services;
 using server.Models;
@@ -59,12 +60,14 @@ namespace server.Controllers {
 
 
         [HttpPost("logout")]
+        [Authorize] 
         public IActionResult Logout(){
             Response.Cookies.Delete("token"); 
             return Ok(new { message = "Logged out" });
         }
 
         [HttpGet("profile")]
+        [Authorize]
         public IActionResult Profile()
         {
             if (!Request.Cookies.TryGetValue("token", out var token))
