@@ -40,7 +40,6 @@ export class Register {
       next: (res) => {
         console.log('Register success', res);
         this.route.navigateByUrl('/home', { replaceUrl: true });
-        window.onpopstate = () => history.go(1);
       },
       error: (err) => {
         console.error('Register failed', err);

@@ -31,7 +31,6 @@ export class Login {
       next: (res) => {
         console.log('Login success', res);
         this.route.navigateByUrl('/home', { replaceUrl: true });
-        window.onpopstate = () => history.go(1);
       },
       error: (err) => {
         console.error('Login failed', err);

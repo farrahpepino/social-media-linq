@@ -13,6 +13,6 @@ export class NavbarWeb {
 
   signOut(){
     this.auth.logout();
-    this.route.navigateByUrl('/');
+    window.location.replace('/'); 
   }
 }

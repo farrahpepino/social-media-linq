@@ -3,10 +3,11 @@
         <p class="logo">R A D I I</p>
     </div>
     <div class="content">
-        <ng-container *ngIf="showRegister">
+        <ng-container *ngIf="!showLogin">
             <app-register (login)="handleAuthLogIn($event)"></app-register>
-          </ng-container>
-          <ng-container *ngIf="!showRegister">
+        </ng-container>
+
+        <ng-container *ngIf="showLogin">
             <app-login (register)="handleAuthRegister($event)"></app-login>
         </ng-container>          
     </div>  

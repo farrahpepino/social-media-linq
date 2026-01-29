@@ -10,6 +10,7 @@ import { Observable } from 'rxjs';
 export class AuthService {
   private apiUrl = 'http://localhost:5283/auth';
   private loggedIn = false; 
+
   constructor(private http: HttpClient){}
 
   login(user: LoginDto): Observable<any>{

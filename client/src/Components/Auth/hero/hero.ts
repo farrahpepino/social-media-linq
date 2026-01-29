@@ -10,15 +10,15 @@ import { Register } from '../register/register';
   styleUrl: './hero.css',
 })
 export class Hero {
-  showRegister: boolean = true;
+  showLogin: boolean = true;
 
   
   handleAuthLogIn(_: boolean) {
-    this.showRegister = false; 
+    this.showLogin = true; 
   }
   
   handleAuthRegister(_: boolean) {
-    this.showRegister = true;  
+    this.showLogin = false;  
   }
   
   
