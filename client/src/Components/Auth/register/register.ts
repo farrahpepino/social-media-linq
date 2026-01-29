@@ -3,6 +3,7 @@ import { Component } from '@angular/core';
 import { ReactiveFormsModule, FormGroup, FormControl} from '@angular/forms';
 import { Output, EventEmitter } from '@angular/core';
 import { AuthService } from '../../../Services/auth-service';
+import { Router } from '@angular/router';
 
 ReactiveFormsModule
 @Component({
@@ -13,7 +14,7 @@ ReactiveFormsModule
 })
 export class Register {
   @Output() login = new EventEmitter<boolean>();
-  constructor (private auth: AuthService){}
+  constructor (private auth: AuthService, private route: Router){}
   goToLogin(): void{
     this.login.emit(true);
   }
@@ -28,10 +29,12 @@ export class Register {
     const username = this.registerForm.get('username')!.value!;
     const email = this.registerForm.get('email')!.value!;
     const password = this.registerForm.get('password')!.value!;
+    this.route.navigateByUrl('/home')
 
     this.auth.register({username, email, password}).subscribe({
       next: (res) => {
         console.log('Register success', res);
+        // this.route.navigateByUrl('/home')
       },
       error: (err) => {
         console.error('Register failed', err);

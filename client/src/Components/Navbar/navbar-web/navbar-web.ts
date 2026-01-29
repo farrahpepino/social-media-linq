@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-navbar-web',
@@ -7,5 +8,9 @@ import { Component } from '@angular/core';
   styleUrl: './navbar-web.css',
 })
 export class NavbarWeb {
-
+  constructor (private route: Router){}
+  
+  onClick(){
+    this.route.navigateByUrl('/')
+  }
 }
