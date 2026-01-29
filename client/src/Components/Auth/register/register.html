@@ -12,5 +12,9 @@
      <div *ngIf="loading" class="spinner">
         <app-loading></app-loading>
     </div>
+
+    <div *ngIf="error" class="error">
+        Already registered? Try a different username or email.
+    </div>
   </div>
   

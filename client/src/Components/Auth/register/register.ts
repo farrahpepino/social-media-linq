@@ -18,6 +18,8 @@ ReactiveFormsModule
 export class Register {
   @Output() login = new EventEmitter<boolean>();
   loading = false;
+  error = false;
+
   constructor (private auth: AuthService, private route: Router){}
   goToLogin(): void{
     this.login.emit(true);
@@ -55,6 +57,8 @@ export class Register {
       },
       error: (err) => {
         console.error('Register failed', err);
+        this.error = true;
+        this.registerForm.reset();
       }
     });
   }

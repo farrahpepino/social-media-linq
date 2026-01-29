@@ -16,6 +16,7 @@ import { Loading } from '../../Shared/loading/loading';
 export class Login {
   @Output() register = new EventEmitter<boolean>();
   loading = false;
+  error = false;
   constructor (private auth: AuthService, private route: Router){}
 
   goToRegister(): void{
@@ -45,6 +46,8 @@ export class Login {
       },
       error: (err) => {
         console.error('Login failed', err);
+        this.error = true;
+        this.loginForm.get('password')?.reset();
       }
     })
   }

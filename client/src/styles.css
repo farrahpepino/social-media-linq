@@ -43,6 +43,11 @@ button:hover{
   align-items: flex-start;
 }
 
+.error {
+  padding-top: 50px;
+  color: red;
+}
+
 .row{
   display: flex;
   flex-direction: column;
