@@ -1,2 +1,4 @@
 server/appsettings.json
+server/appsettings.Development.json
+
 *.json
