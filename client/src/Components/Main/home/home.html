@@ -7,9 +7,9 @@
             <strong>farrahpepino</strong>
             <div class="parent">
                 <div>
-                    <button class="bt-transparent">●●●</button>
+                    <button class="bt-transparent" type="button" (click)="showMenu()">●●●</button>
                 </div>
-                <div class="child">
+                <div class="child" *ngIf="menu">
                     <button type="button">delete post</button>
                 </div>
             </div>

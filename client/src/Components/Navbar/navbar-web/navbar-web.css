@@ -8,6 +8,7 @@
     border-bottom-right-radius: 25px;
     box-shadow: 3px 3px 10px rgba(0, 0, 0, 0.3);
     position: fixed;
+    z-index: 1001;
 }
 
 button{
@@ -24,6 +25,6 @@ button{
     border: 1px solid;
     outline: none;
     background-color: white;
-    z-index: 10001;
+    z-index: 1001;
 
 }

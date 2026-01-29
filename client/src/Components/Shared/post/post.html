@@ -1,17 +1,18 @@
 <button type="button" class="post" (click)="toggleForm()">+</button>
 
-<div class="container">
-    <form action=""  *ngIf="showForm">
-        <div class="form">
-            <strong>Farrah Pepino</strong>
-            <button type="button" class="close-btn" (click)="toggleForm()">X</button>
-        </div>
-        <div
-        contenteditable="true"
-        class="editable"
-        data-placeholder="What's on your mind"
-        >
-        </div>
-        <button type="submit" class="post-btn">Post</button>
-    </form>
-</div>
+<div class="blur" *ngIf="showForm"></div>
+
+
+<form *ngIf="showForm">
+    <div class="form">
+        <strong>Farrah Pepino</strong>
+        <button type="button" class="close-btn" (click)="toggleForm()">X</button>
+    </div>
+    <div
+    contenteditable="true"
+    class="editable"
+    data-placeholder="What's on your mind"
+    >
+    </div>
+    <button type="submit" class="post-btn">Post</button>
+</form>
