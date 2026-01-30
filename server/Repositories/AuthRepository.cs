@@ -21,11 +21,9 @@ namespace server.Repositories {
 
             var user = new User
             {
-                Id = Guid.NewGuid().ToString(),
                 Username = dto.Username,
                 Email = dto.Email,
                 Password = dto.Password,
-                CreatedAt = DateTime.Now
             };
 
             _context.Users.Add(user);
