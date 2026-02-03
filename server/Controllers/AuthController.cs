@@ -61,14 +61,12 @@ namespace server.Controllers {
 
 
         [HttpPost("logout")]
-        [Authorize] 
         public IActionResult Logout(){
             Response.Cookies.Delete("token"); 
             return Ok(new { message = "Logged out" });
         }
 
         [HttpGet("profile")]
-        [Authorize]
         public IActionResult Profile()
         {
             if (!Request.Cookies.TryGetValue("token", out var token))
@@ -77,11 +75,11 @@ namespace server.Controllers {
             var handler = new System.IdentityModel.Tokens.Jwt.JwtSecurityTokenHandler();
             var jwtToken = handler.ReadJwtToken(token);
 
-            var userId = jwtToken.Claims.First(c => c.Type == System.IdentityModel.Tokens.Jwt.JwtRegisteredClaimNames.Sub).Value;
+            var id = jwtToken.Claims.First(c => c.Type == System.IdentityModel.Tokens.Jwt.JwtRegisteredClaimNames.Sub).Value;
             var username = jwtToken.Claims.First(c => c.Type == System.IdentityModel.Tokens.Jwt.JwtRegisteredClaimNames.UniqueName).Value;
             var email = jwtToken.Claims.First(c => c.Type == System.IdentityModel.Tokens.Jwt.JwtRegisteredClaimNames.Email).Value;
 
-            return Ok(new { userId, username, email });
+            return Ok(new { id, username, email });
         }
     }
 }

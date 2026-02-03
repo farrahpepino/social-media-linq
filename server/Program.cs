@@ -15,7 +15,7 @@ var secret = builder.Configuration["Jwt:Secret"];
 
 builder.Services.AddCors(options =>
 {
-    options.AddPolicy("AllowAngularDev",
+    options.AddPolicy("Frontend",
         builder =>
         {
             builder.WithOrigins("http://localhost:4200") 
@@ -38,7 +38,8 @@ builder.Services.Configure<JwtSettings>(builder.Configuration.GetSection("Jwt"))
 builder.Services.AddScoped<IJwtService, JwtService>(); 
 builder.Services.AddScoped<IAuthService, AuthService>(); 
 builder.Services.AddScoped<IAuthRepository, AuthRepository>();
-
+builder.Services.AddScoped<IPostService, PostService>(); 
+builder.Services.AddScoped<IPostRepository, PostRepository>();
 
 builder.Services.AddAuthentication(options =>
 {
@@ -47,10 +48,22 @@ builder.Services.AddAuthentication(options =>
 })
 .AddJwtBearer(options =>
 {
+    options.Events = new JwtBearerEvents
+    {
+        OnMessageReceived = context =>
+        {
+            if (context.Request.Cookies.ContainsKey("token"))
+            {
+                context.Token = context.Request.Cookies["token"];
+            }
+            return Task.CompletedTask;
+        }
+    };
+
     options.TokenValidationParameters = new TokenValidationParameters
     {
-        ValidateIssuer = false, // set true for issuer validation
-        ValidateAudience = false, // set true for audience validation
+        ValidateIssuer = false, // change true if Issuer is set
+        ValidateAudience = false, // change true if Audience is set
         ValidateLifetime = true,
         ValidateIssuerSigningKey = true,
         IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(secret!))
@@ -62,9 +75,8 @@ builder.Services.AddControllers();
 
 var app = builder.Build();
 
-
 app.UseMiddleware<GlobalExceptionHandler>();
-app.UseCors("AllowAngularDev"); 
+app.UseCors("Frontend"); 
 
 app.UseAuthentication();
 app.UseAuthorization();

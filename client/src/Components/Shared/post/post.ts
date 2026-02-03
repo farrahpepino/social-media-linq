@@ -1,6 +1,9 @@
 import { CommonModule } from '@angular/common';
-import { Component, OnDestroy, OnInit } from '@angular/core';
-import { ReactiveFormsModule } from '@angular/forms';
+import { Component, ElementRef, OnDestroy, OnInit, ViewChild } from '@angular/core';
+import { FormControl, FormGroup, ReactiveFormsModule } from '@angular/forms';
+import { AuthService } from '../../../Services/auth-service';
+import { PostService } from '../../../Services/post-service';
+
 
 @Component({
   selector: 'app-post',
@@ -12,8 +15,11 @@ import { ReactiveFormsModule } from '@angular/forms';
 export class Post implements OnInit, OnDestroy {
   showForm = false;
   today: Date = new Date();
-  private timerId!: any;
+  authorId: string = '';
 
+  private timerId!: any;
+  @ViewChild('postInput') postInput!: ElementRef<HTMLElement>; // medium article
+  constructor (private auth: AuthService, private postService: PostService) {}
   ngOnInit() {
     this.updateTime();
   }
@@ -35,4 +41,29 @@ export class Post implements OnInit, OnDestroy {
     this.showForm = !this.showForm;
   }
   
+  submitPost() {
+    const content = this.postInput.nativeElement.innerText.trim();
+
+    const profile = this.auth.getProfile().subscribe({
+      next: (res) => {
+        this.postService.submitPost({
+          authorId: res.id!,
+          content: content
+        }).subscribe({
+          next: (res) => {
+            this.toggleForm();
+            this.postInput.nativeElement.innerText = '';
+          },
+          error: (err) => {
+            console.error("Unable to post", err)
+          }
+        })
+      },
+      error: (err) => {
+        console.error("Unable to fetch profile.", err)
+      }
+    });
+    
+    
+  }
 }

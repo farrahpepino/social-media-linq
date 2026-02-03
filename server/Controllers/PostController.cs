@@ -7,7 +7,7 @@ namespace server.Controllers {
 
     [Authorize]
     [ApiController]
-    [Route("controller")]
+    [Route("[controller]")]
 
     public class PostController : ControllerBase {
         private readonly IPostService _service;
@@ -28,6 +28,7 @@ namespace server.Controllers {
         }
 
         [HttpDelete("{id}")]
+        [Authorize] 
         public async Task<IActionResult> DeletePost(string id) {
             var res = await _service.DeletePost(id);
 

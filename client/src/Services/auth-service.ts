@@ -28,8 +28,8 @@ export class AuthService {
     return this.http.post(`${this.apiUrl}/logout`, {withCredentials: true})
   }
 
-  getProfile(){
-    return this.http.get<User>('/auth/profile', { withCredentials: true });
+  getProfile(): Observable<User>{
+    return this.http.get<User>(`${this.apiUrl}/profile`, {withCredentials: true})
   }
 
   isAuthenticated(){

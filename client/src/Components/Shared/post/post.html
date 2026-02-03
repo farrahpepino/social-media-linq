@@ -2,7 +2,7 @@
 <div class="blur" *ngIf="showForm"></div>
 
 
-<form *ngIf="showForm">
+<div *ngIf="showForm" class="post-form">
     <div class="header-form">
         <strong>Farrah Pepino</strong>
         <div class="subtext">{{ today | date: "MMM d, y 'at' h:mm a" }}</div>
@@ -12,7 +12,8 @@
     contenteditable="true"
     class="editable"
     data-placeholder="What's on your mind?"
+    #postInput
     >
     </div>
-    <button type="submit" class="post-btn">Post</button>
-</form>
+    <button type="button" class="post-btn" (click)="submitPost()">Post</button>
+</div>
