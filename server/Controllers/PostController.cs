@@ -16,7 +16,7 @@ namespace server.Controllers {
             _service = service;
         }
         
-        [HttpPost("create-post")]
+        [HttpPost()]
         public async Task<IActionResult> CreatePost([FromBody] Post post) {
             var res = await _service.CreatePost(post);
 
@@ -27,7 +27,7 @@ namespace server.Controllers {
             return Ok(res);
         }
 
-        [HttpDelete("delete-post/{id}")]
+        [HttpDelete("{id}")]
         public async Task<IActionResult> DeletePost(string id) {
             var res = await _service.DeletePost(id);
 
