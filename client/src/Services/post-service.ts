@@ -17,4 +17,17 @@ export class PostService {
   deletePost(id: string){
     return this.http.delete(`${this.apiUrl}/${id}`, {withCredentials: true});
   }
+
+  getPostById(id: string): Observable<Post> {
+    return this.http.get<Post>(`${this.apiUrl}/${id}`, {withCredentials: true});
+  }
+
+  getProfilePosts(userId: string): Observable<Post[]>{
+    return this.http.get<Post[]>(`${this.apiUrl}/get-profile-posts/${userId}`, {withCredentials: true});
+  }
+
+  getFeed(userId: string): Observable<Post[]>{
+    return this.http.get<Post[]>(`${this.apiUrl}/get-feed/${userId}`, {withCredentials: true});
+  }
+
 }

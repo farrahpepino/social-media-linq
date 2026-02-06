@@ -53,7 +53,7 @@ namespace server.Controllers {
         }
 
         [Authorize]
-        [HttpGet("get-profile/{userId}")]
+        [HttpGet("get-profile-posts/{userId}")]
         public async Task<IActionResult> GetProfilePosts(string userId){
             var res = await _service.GetProfilePosts(userId);
 
