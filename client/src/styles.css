@@ -212,6 +212,17 @@ input::placeholder{
   position: absolute;
 }
 
+.child,
+.child button {
+  pointer-events: auto !important;
+  z-index: 9999;
+}
+
+.m-0{
+  margin-top: 0px;
+  margin-bottom: 10px;
+}
+
 .close-btn{
   border: none;
   background-color: transparent;
