@@ -5,20 +5,20 @@
     <div class="page">
         <button>HOME</button>
     </div>
-    <div class="post-container">
+    <div class="post-container" *ngFor="let post of posts">
         <div class="post-header">
-            <strong>farrahpepino</strong>
+            <strong>{{post.authorUsername}}</strong>
             <div class="parent">
                 <div>
-                    <button class="bt-transparent" type="button" (click)="showMenu()">●●●</button>
+                    <button class="bt-transparent t-g" type="button" (click)="showMenu()">●●●</button>
                 </div>
                 <div class="child" *ngIf="menu">
-                    <button type="button">delete post</button>
+                    <button type="button" (click)="deletePost(post.id)">delete post</button>
                 </div>
             </div>
         </div>
         <div class="text-content">
-            hello!!
+            {{post.content}}
         </div>
         <!-- <div class="img-container">
             <img src="https://i.pinimg.com/1200x/e8/78/cb/e878cb55dda37b2876848988cecb34b8.jpg" alt="apt" >

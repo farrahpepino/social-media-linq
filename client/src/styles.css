@@ -48,6 +48,10 @@ button:hover{
   align-items: flex-start;
 }
 
+.t-g{
+  color:gray;
+}
+
 .error {
   padding-top: 50px;
   color: red;

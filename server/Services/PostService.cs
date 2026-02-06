@@ -1,5 +1,7 @@
 using server.Models;
 using server.Repositories;
+using server.Dto;
+
 namespace server.Services {
     public class PostService: IPostService {
         private readonly IPostRepository _repository;
@@ -16,15 +18,15 @@ namespace server.Services {
             return await _repository.DeletePost(id);
         }
 
-        public Task<Post> GetPostById(string id) {
+        public async Task<PostDto> GetPostById(string id) {
             return await _repository.GetPostById(id);
         }
 
-        public Task<IEnumerable<Post>> GetProfilePosts(string userId){
+        public async Task<IEnumerable<PostDto>> GetProfilePosts(string userId){
             return await _repository.GetProfilePosts(userId);
         }
 
-        public Task<IEnumerable<Post>> GetFeed() {
+        public async Task<IEnumerable<PostDto>> GetFeed() {
             return await _repository.GetFeed();
         }
     }

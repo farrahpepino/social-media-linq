@@ -1,11 +1,12 @@
 using server.Models;
+using server.Dto;
 
 namespace server.Services {
     public interface IPostService {
         Task<Post> CreatePost(Post post);
         Task<bool> DeletePost(string id);
-        Task<Post> GetPostById(string id);
-        Task<IEnumerable<Post>> GetProfilePosts(string userId);
-        Task<IEnumerable<Post>> GetFeed();
+        Task<PostDto> GetPostById(string id);
+        Task<IEnumerable<PostDto>> GetProfilePosts(string userId);
+        Task<IEnumerable<PostDto>> GetFeed();
     }
 }
