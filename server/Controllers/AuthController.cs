@@ -27,8 +27,8 @@ namespace server.Controllers {
                 Response.Cookies.Append("token", token, new CookieOptions
                     {
                         HttpOnly = true,
-                        Secure = false, // true in production
-                        SameSite = SameSiteMode.Strict,
+                        Secure = true, // true in production
+                        SameSite = SameSiteMode.None,
                         Expires = DateTime.Now.AddDays(7)
                     });
 
@@ -48,8 +48,8 @@ namespace server.Controllers {
                 Response.Cookies.Append("token", token, new CookieOptions
                 {
                     HttpOnly = true,
-                    Secure = false, // true in production
-                    SameSite = SameSiteMode.Strict,
+                    Secure = true, // true in production
+                    SameSite = SameSiteMode.None,
                     Expires = DateTime.Now.AddDays(7)
                 });
 

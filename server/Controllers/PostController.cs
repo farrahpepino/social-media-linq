@@ -17,6 +17,7 @@ namespace server.Controllers {
         }
         
         [HttpPost()]
+        [Authorize] 
         public async Task<IActionResult> CreatePost([FromBody] Post post) {
             var res = await _service.CreatePost(post);
 

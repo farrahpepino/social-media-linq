@@ -15,7 +15,7 @@ var secret = builder.Configuration["Jwt:Secret"];
 
 builder.Services.AddCors(options =>
 {
-    options.AddPolicy("Frontend",
+    options.AddPolicy("CorsPolicy",
         builder =>
         {
             builder.WithOrigins("http://localhost:4200") 
@@ -76,7 +76,7 @@ builder.Services.AddControllers();
 var app = builder.Build();
 
 app.UseMiddleware<GlobalExceptionHandler>();
-app.UseCors("Frontend"); 
+app.UseCors("CorsPolicy"); 
 
 app.UseAuthentication();
 app.UseAuthorization();
