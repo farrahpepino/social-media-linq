@@ -1,1 +1,35 @@
 <p>profile-2 works!</p>
+
+<app-navbar/>
+
+<div class="container">
+    <div class="page">
+        <button>HOME</button>
+    </div>
+    <div class="post-container" *ngFor="let post of posts">
+        <div class="post-header">
+            <div>
+                <strong>{{post.authorUsername}}</strong>
+                <p class="t-g m-0">{{post.createdAt | date: "MMM d, y 'at' h:mm a" }}</p>
+            </div>
+
+            <div class="parent">
+                <div>
+                    <button class="bt-transparent t-g" type="button" (click)="showDropdown(post.id!)">●●●</button>
+                </div>
+                <div class="child"  *ngIf="selectedPost === post.id">
+                    <button type="button" (click)="deletePost(post.id!)">delete post</button>
+                </div>
+            </div>
+        </div>
+        <div class="text-content">
+            {{post.content}}
+        </div>
+        <div class="img-container">
+            <img src="https://i.pinimg.com/1200x/e8/78/cb/e878cb55dda37b2876848988cecb34b8.jpg" alt="apt" >
+        </div>
+
+    </div>
+</div>
+
+<app-post></app-post>
