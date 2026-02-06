@@ -40,5 +40,42 @@ namespace server.Controllers {
             return Ok();
         }
 
+        [Authorize] 
+        [HttpGet("{id}")]
+        public async Task<IActionResult> GetPostById(string id) {
+            var res = await _service.GetPostById(id);
+
+            if(res==null){
+                return NotFound();
+            }
+
+            return Ok(res);
+        }
+
+        [Authorize]
+        [HttpGet("get-profile/{userId}")]
+        public async Task<IActionResult> GetProfilePosts(string userId){
+            var res = await _service.GetProfilePosts(userId);
+
+            if(res==null){
+                return NotFound();
+            }
+
+            return Ok(res);
+        }
+
+        [Authorize]
+        [HttpGet("get-feed/{userId}")]
+        public async Task<IActionResult> GetFeed(string userId){
+            var res = await _service.GetFeed();
+
+            if(res==null){
+                        return NotFound();
+                    }
+
+            return Ok(res);
+
+        }
+        
     }
 }

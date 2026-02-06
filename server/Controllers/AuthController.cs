@@ -59,13 +59,14 @@ namespace server.Controllers {
             return Unauthorized("Invalid credentials");
         }
 
-
+        [Authorize]
         [HttpPost("logout")]
         public IActionResult Logout(){
             Response.Cookies.Delete("token"); 
             return Ok(new { message = "Logged out" });
         }
 
+        [Authorize]
         [HttpGet("profile")]
         public IActionResult Profile()
         {

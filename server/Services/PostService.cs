@@ -15,5 +15,17 @@ namespace server.Services {
         public async Task<bool> DeletePost (string id) {
             return await _repository.DeletePost(id);
         }
+
+        public Task<Post> GetPostById(string id) {
+            return await _repository.GetPostById(id);
+        }
+
+        public Task<IEnumerable<Post>> GetProfilePosts(string userId){
+            return await _repository.GetProfilePosts(userId);
+        }
+
+        public Task<IEnumerable<Post>> GetFeed() {
+            return await _repository.GetFeed();
+        }
     }
 }
