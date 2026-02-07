@@ -1,29 +1,28 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
+import { Navbar } from '../../Navbar/navbar/navbar';
 import { Post } from '../../Shared/post/post';
-import { PostModel } from '../../../Models/PostModel';
+import { CommonModule } from '@angular/common';
 import { PostService } from '../../../Services/post-service';
+import { PostModel } from '../../../Models/PostModel';
 
 @Component({
   selector: 'app-profile-2',
-  imports: [Post],
+  imports: [Post, CommonModule, Navbar],
   templateUrl: './profile-2.html',
   styleUrl: './profile-2.css',
 })
-export class Profile2 {
+export class Profile2 implements OnInit {
   posts: PostModel[] = [];
   selectedPost: string | null = null;
 
   constructor(private postService: PostService) {}
 
   ngOnInit(): void {
-    this.postService.getFeed("change-this").subscribe({
-      next: (res)=>{
-        this.posts = res;
-      },
-      error: (err) => {
-        console.error("Error fetching posts: ", err)
-      }
+    this.postService.posts$.subscribe(posts => {
+      this.posts = posts;
     });
+
+    this.postService.getFeed('change-this').subscribe();
   }
 
   showDropdown(id: string){
@@ -33,7 +32,6 @@ export class Profile2 {
   deletePost(id: string) {
     this.postService.deletePost(id).subscribe({
       next: ()=>{
-        this.posts = this.posts.filter(p => p.id !== id);
         this.selectedPost = null;
       },
       error: (err)=> {
@@ -41,4 +39,5 @@ export class Profile2 {
       }
     });
   }
+
 }
