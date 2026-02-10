@@ -17,11 +17,14 @@ export class Home implements OnInit {
   constructor(private postService: PostService) {}
 
   ngOnInit(): void {
-    this.postService.posts$.subscribe(posts => {
-      this.posts = posts;
+    this.postService.getFeed('change-this').subscribe({
+      next: (res) => {
+        this.posts = res;
+      },
+      error: (err) => {
+        console.error("Unable to fetch posts:", err);
+      }
     });
-
-    this.postService.getFeed('change-this').subscribe();
   }
 
   showDropdown(id: string){
@@ -31,12 +34,17 @@ export class Home implements OnInit {
   deletePost(id: string) {
     this.postService.deletePost(id).subscribe({
       next: ()=>{
+        this.posts = this.posts.filter(p => p.id !== id);
         this.selectedPost = null;
       },
       error: (err)=> {
         console.error("Unable to delete post: ", err);
       }
     });
+  }
+
+  onPostCreated(newPost: PostModel) {
+    this.posts.unshift(newPost); 
   }
 
 }

@@ -1,13 +1,14 @@
 import { CommonModule } from '@angular/common';
 import { Component, ElementRef, OnDestroy, OnInit, ViewChild } from '@angular/core';
-import { FormControl, FormGroup, ReactiveFormsModule } from '@angular/forms';
 import { AuthService } from '../../../Services/auth-service';
 import { PostService } from '../../../Services/post-service';
-
+import { Output } from '@angular/core';
+import { EventEmitter } from '@angular/core';
+import { PostModel } from '../../../Models/PostModel';
 
 @Component({
   selector: 'app-post',
-  imports: [CommonModule, ReactiveFormsModule],
+  imports: [CommonModule],
   templateUrl: './post.html',
   styleUrl: './post.css'
 })
@@ -18,7 +19,11 @@ export class Post implements OnInit, OnDestroy {
   authorId: string = '';
 
   private timerId!: any;
+
+  @Output() postCreated = new EventEmitter<PostModel>();
+
   @ViewChild('postInput') postInput!: ElementRef<HTMLElement>; // medium article
+
   constructor (private auth: AuthService, private postService: PostService) {}
   ngOnInit() {
     this.updateTime();
@@ -51,7 +56,8 @@ export class Post implements OnInit, OnDestroy {
           content: content
         }).subscribe({
           next: (res) => {
-            this.toggleForm();
+            this.postCreated.emit(res);
+            this.toggleForm();            
             this.postInput.nativeElement.innerText = '';
           },
           error: (err) => {
@@ -63,7 +69,5 @@ export class Post implements OnInit, OnDestroy {
         console.error("Unable to fetch profile.", err)
       }
     });
-    
-    
   }
 }
