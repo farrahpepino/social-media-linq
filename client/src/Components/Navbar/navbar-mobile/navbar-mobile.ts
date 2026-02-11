@@ -4,10 +4,11 @@ import { Loading } from '../../Shared/loading/loading';
 import { AuthService } from '../../../Services/auth-service';
 import { finalize } from 'rxjs';
 import { Router } from '@angular/router';
+import { Search } from '../../Shared/search/search';
 
 @Component({
   selector: 'app-navbar-mobile',
-  imports: [CommonModule, Loading],
+  imports: [CommonModule, Loading, Search],
   templateUrl: './navbar-mobile.html',
   styleUrl: './navbar-mobile.css',
 })
