@@ -46,5 +46,4 @@ export class Home implements OnInit {
   onPostCreated(newPost: PostModel) {
     this.posts.unshift(newPost); 
   }
-
 }

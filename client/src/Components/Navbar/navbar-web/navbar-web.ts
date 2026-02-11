@@ -15,6 +15,13 @@ export class NavbarWeb {
   loading = false;
   constructor (private route: Router, private auth: AuthService){}
 
+  goToHome(){
+    this.route.navigateByUrl('/home');
+  }
+
+  goToProfile(){
+    this.route.navigateByUrl('/profile');
+  }
   
   signOut(){
     this.loading = true;

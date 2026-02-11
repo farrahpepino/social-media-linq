@@ -159,6 +159,10 @@ input::placeholder{
   text-decoration: underline;
 }
 
+.t-u{
+  text-decoration: underline;
+}
+
 .underline:hover{
   text-decoration: none;
 }

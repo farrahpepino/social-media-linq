@@ -16,32 +16,18 @@ import { User } from '../../../Models/User';
 export class Profile implements OnInit {
   posts: PostModel[] = [];
   selectedPost: string | null = null;
-  profile: User | null = null;
-  
 
-  constructor(private postService: PostService, private authService: AuthService) {}
+  constructor(private postService: PostService) {}
 
   ngOnInit(): void {
-    this.authService.getProfile().subscribe({
-      next: (res)=> {
-        this.profile = res;
-
-        this.postService.getProfilePosts(this.profile?.id!).subscribe({
-          next: (res)=>{
-            this.posts = res;
-          },
-          error: (err) => {
-            console.error("Unable to fetch posts: ", err);
-          }
-        });
-
+    this.postService.getFeed('change-this').subscribe({
+      next: (res) => {
+        this.posts = res;
       },
       error: (err) => {
-        console.error("Unable to fetch profile:", err);
+        console.error("Unable to fetch posts:", err);
       }
     });
-
-    
   }
 
   showDropdown(id: string){
@@ -60,5 +46,8 @@ export class Profile implements OnInit {
     });
   }
 
+  onPostCreated(newPost: PostModel) {
+    this.posts.unshift(newPost); 
+  }
 }
 

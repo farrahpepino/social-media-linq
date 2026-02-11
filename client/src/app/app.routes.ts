@@ -3,6 +3,7 @@ import { Hero } from '../Components/Auth/hero/hero';
 import { Home } from '../Components/Main/home/home';
 import { authGuard } from '../Guards/auth-guard';
 import { unauthGuard } from '../Guards/unauth-guard';
+import { Profile } from '../Components/Main/profile/profile';
 
 export const routes: Routes = [
     {
@@ -14,5 +15,11 @@ export const routes: Routes = [
         path: "home",
         component: Home,
         canActivate: [authGuard]
-    }
+    },
+    {
+        path: "profile",
+        component: Profile,
+        canActivate: [authGuard]
+    },
+
 ];

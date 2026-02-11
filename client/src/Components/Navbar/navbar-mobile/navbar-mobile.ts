@@ -3,6 +3,7 @@ import { Component } from '@angular/core';
 import { Loading } from '../../Shared/loading/loading';
 import { AuthService } from '../../../Services/auth-service';
 import { finalize } from 'rxjs';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-navbar-mobile',
@@ -11,8 +12,17 @@ import { finalize } from 'rxjs';
   styleUrl: './navbar-mobile.css',
 })
 export class NavbarMobile {
+
   loading = false;
-  constructor (private auth: AuthService) {}
+  constructor (private route: Router, private auth: AuthService) {}
+
+  goToHome(){
+    this.route.navigateByUrl('/home');
+  }
+
+  goToProfile(){
+    this.route.navigateByUrl('/profile');
+  }
 
   signOut(){
     this.loading = true;

@@ -14,6 +14,10 @@ button{
     color: gray;
 }
 
+button:hover{
+    text-decoration: none;
+}
+
 input {
     background-color: transparent;
     color: gray;
