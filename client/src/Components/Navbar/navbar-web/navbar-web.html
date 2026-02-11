@@ -7,8 +7,10 @@
     </div>
 </div>
 
-<input type="text" class="search" placeholder="SEARCH">
+<input type="text" class="search" placeholder="SEARCH" (input)="search$.next($any($event.target).value)" [(ngModel)]="searchTerm">
 
 <div *ngIf="loading" class="spinner">
     <app-loading></app-loading>
 </div>
+
+<app-search [users]="users" *ngIf="searchTerm"></app-search>

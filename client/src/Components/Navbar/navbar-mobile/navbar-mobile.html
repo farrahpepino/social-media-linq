@@ -1,6 +1,6 @@
 <div class="container">
     <button class="bt-transparent logo" (click)="goToHome()" type="button">R A D I I</button>
-    <input type="text" placeholder="SEARCH" class="search">
+    <input type="text" placeholder="SEARCH" class="search" (input)="search$.next($any($event.target).value)" [(ngModel)]="searchTerm">
     <div>
         <button class="bt-transparent" (click)="goToProfile()">PROFILE</button>
         <button class="bt-transparent" type="button" (click)="signOut()">SIGN OUT</button>
@@ -11,4 +11,4 @@
     </div>
 </div>
 
-<app-search></app-search>
+<app-search [users]="users" *ngIf="searchTerm"></app-search>

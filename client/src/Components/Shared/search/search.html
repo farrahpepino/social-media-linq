@@ -1,11 +1,7 @@
-<div class="container">
-    <button type="button" class="bt-transparent">search works!</button>
-    <button type="button" class="bt-transparent">search works!</button>
-    <button type="button" class="bt-transparent">search works!</button>
-    <button type="button" class="bt-transparent">search works!</button>
-    <button type="button" class="bt-transparent">search works!</button>
-    <button type="button" class="bt-transparent">search works!</button>
-    <button type="button" class="bt-transparent">search works!</button>
-    <button type="button" class="bt-transparent">search works!</button>
 
+<div *ngFor="let user of users" class="container">
+    <button type="button" class="bt-transparent">
+        {{ user.username }}
+    </button>
 </div>
+  

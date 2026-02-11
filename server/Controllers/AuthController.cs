@@ -11,7 +11,7 @@ namespace server.Controllers {
     [Route("[controller]")]
     public class AuthController : ControllerBase {
         
-        private IAuthService _service;
+        private readonly IAuthService _service;
 
         public AuthController (IAuthService service) {
             _service = service;

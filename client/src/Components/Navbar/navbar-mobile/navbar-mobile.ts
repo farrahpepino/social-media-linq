@@ -5,17 +5,41 @@ import { AuthService } from '../../../Services/auth-service';
 import { finalize } from 'rxjs';
 import { Router } from '@angular/router';
 import { Search } from '../../Shared/search/search';
+import { Subject, debounceTime, distinctUntilChanged, filter } from 'rxjs';
+import { UserService } from '../../../Services/user-service';
+import { User } from '../../../Models/User';
+import { FormsModule } from '@angular/forms';
 
 @Component({
   selector: 'app-navbar-mobile',
-  imports: [CommonModule, Loading, Search],
+  imports: [CommonModule, FormsModule, Loading, Search],
   templateUrl: './navbar-mobile.html',
   styleUrl: './navbar-mobile.css',
 })
 export class NavbarMobile {
 
   loading = false;
-  constructor (private route: Router, private auth: AuthService) {}
+  search$ = new Subject<string>();
+  users: User[] = [];
+  searchTerm: string = ''; 
+
+  constructor (private route: Router, private auth: AuthService, private user: UserService) {}
+
+  ngOnInit() {
+    this.search$
+      .pipe(
+        debounceTime(300),
+        distinctUntilChanged(),
+        filter(value => value.trim().length > 0)
+      )
+      .subscribe(value => {
+        this.user.searchUser(value).subscribe(users => {
+          this.users = users;
+        });
+      });
+  }
+
+  
 
   goToHome(){
     this.route.navigateByUrl('/home');

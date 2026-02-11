@@ -4,16 +4,40 @@ import { AuthService } from '../../../Services/auth-service';
 import { finalize } from 'rxjs';
 import { Loading } from '../../Shared/loading/loading';
 import { CommonModule } from '@angular/common';
+import { Subject, debounceTime, distinctUntilChanged, filter } from 'rxjs';
+import { User } from '../../../Models/User';
+import { UserService } from '../../../Services/user-service';
+import { Search } from '../../Shared/search/search';
+import { FormsModule } from '@angular/forms';
+
 @Component({
   selector: 'app-navbar-web',
-  imports: [CommonModule, Loading],
+  imports: [CommonModule, Loading, Search, FormsModule],
   templateUrl: './navbar-web.html',
   styleUrl: './navbar-web.css',
 })
 
 export class NavbarWeb {
   loading = false;
-  constructor (private route: Router, private auth: AuthService){}
+  search$ = new Subject<string>();
+  users: User[] = [];
+  searchTerm: string = ''; 
+
+  constructor (private route: Router, private auth: AuthService, private user: UserService) {}
+
+  ngOnInit() {
+    this.search$
+      .pipe(
+        debounceTime(300),
+        distinctUntilChanged(),
+        filter(value => value.trim().length > 0),
+      )
+      .subscribe(value => {
+        this.user.searchUser(value).subscribe(users => {
+          this.users = users;
+        });
+      });
+  }
 
   goToHome(){
     this.route.navigateByUrl('/home');
