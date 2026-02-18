@@ -39,7 +39,6 @@ export class Login {
     )
     .subscribe({
       next: (res) => {
-        console.log('Login success', res);
         this.route.navigateByUrl('/home').then(() => {
           history.replaceState(null, '', '/home'); 
         }); 

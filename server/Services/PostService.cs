@@ -26,8 +26,8 @@ namespace server.Services {
             return await _repository.GetProfilePosts(userId);
         }
 
-        public async Task<IEnumerable<PostDto>> GetFeed() {
-            return await _repository.GetFeed();
+        public async Task<IEnumerable<PostDto>> GetFeed(string userId) {
+            return await _repository.GetFeed(userId);
         }
     }
 }

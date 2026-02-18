@@ -65,9 +65,11 @@ namespace server.Controllers {
         }
 
         [Authorize]
-        [HttpGet("get-feed/{userId}")]
-        public async Task<IActionResult> GetFeed(string userId){
-            var res = await _service.GetFeed();
+        [HttpGet("get-feed}")]
+        public async Task<IActionResult> GetFeed(){
+            
+            var userId = User.FindFirst(System.Security.Claims.ClaimTypes.NameIdentifier)?.Value;
+            var res = await _service.GetFeed(userId);
 
             if(res==null){
                         return NotFound();

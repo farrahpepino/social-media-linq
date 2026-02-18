@@ -65,26 +65,34 @@ namespace server.Repositories {
                 .ToListAsync();
         }
 
-        public async Task<IEnumerable<PostDto>> GetFeed(){
-            return await _context.Posts
-                .OrderByDescending(p => p.CreatedAt)
-                 .Join(
-                    _context.Users,
-                    p => p.AuthorId,
-                    u => u.Id,
-                    (p, u) => new PostDto{
-                        Id = p.Id,
-                        AuthorId = p.AuthorId,
-                        AuthorUsername = u.Username,
-                        Content = p.Content,
-                        CreatedAt = p.CreatedAt
+        public async Task<IEnumerable<PostDto>> GetFeed(string userId){
+
+            var followedIds = await _context.Followers
+                            .Where(f => f.FollowerId == userId)
+                            .Select(f => f.FolloweeId)
+                            .ToListAsync();
+            
+            followedIds.Add(userId);
+
+            var feed = await _context.Posts
+                    .Where(p => followedIds.Contains(p.AuthorId))
+                    .Join(
+                        _context.Users,
+                        p => p.AuthorId,
+                        u => u.Id,
+                        (p, u) => new PostDto
+                        {
+                            Id = p.Id,
+                            AuthorId = p.AuthorId,
+                            AuthorUsername = u.Username,
+                            Content = p.Content,
+                            CreatedAt = p.CreatedAt
+                        }
+                    )
+                    .OrderByDescending(p => p.CreatedAt)
+                    .ToListAsync();
                     }
-                )
-                .ToListAsync();
 
-                //where userid in following
-        }
-
-        
+            return feed;
     }
 }

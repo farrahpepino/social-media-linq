@@ -46,7 +46,6 @@ export class NavbarWeb {
   goToProfile(){
     this.auth.getProfile().subscribe({
       next: (res) => {
-        console.log(res.username);
         this.route.navigate(['/user', res.username]);
       },
       error: (err) => {

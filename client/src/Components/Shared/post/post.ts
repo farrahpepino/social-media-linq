@@ -53,6 +53,7 @@ export class Post implements OnInit, OnDestroy {
 
     this.auth.getProfile().subscribe({
       next: (res) => {
+  
         this.user = res;
         this.postService.submitPost({
           authorId: res.id!,

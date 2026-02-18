@@ -19,10 +19,26 @@ namespace server.Data {
             modelBuilder.Entity<User>()
                 .HasIndex(u => u.Id)
                 .IsUnique();
+
+            modelBuilder.Entity<Follower>()
+                .HasKey(f => new { f.FollowerId, f.FolloweeId });
+
+            modelBuilder.Entity<Follower>()
+                .HasOne<User>() 
+                .WithMany()
+                .HasForeignKey(f => f.FollowerId)
+                .OnDelete(DeleteBehavior.Restrict);
+
+            modelBuilder.Entity<Follower>()
+                .HasOne<User>() 
+                .WithMany()
+                .HasForeignKey(f => f.FolloweeId)
+                .OnDelete(DeleteBehavior.Restrict);
         }
 
         public DbSet<User> Users { get; set; }  
         public DbSet<Post> Posts { get; set; } 
+        public DbSet<Follower> Followers { get; set; } 
 
          
     }

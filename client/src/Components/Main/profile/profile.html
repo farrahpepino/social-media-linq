@@ -1,17 +1,16 @@
 
 <app-navbar/>
-
 <div class="container">
     <div class="wrapper">
 
     <div class="page">
         <div class="row">
             <div class="t-g t-u">{{user?.username}}</div>
-            <button>FOLLOW</button>
+            <button (click)="toggleFollow()" *ngIf="loggedIn?.id != user?.id"> {{ followStatus ? 'FOLLOWING' : 'FOLLOW' }} </button>
         </div>
         <div class="row">
-            <button>8 FOLLOWING</button>
-            <button>10 FOLLOWING</button>
+            <button>{{followers?.length || 0}} FOLLOWING</button>
+            <button>{{following?.length || 0}} FOLLOWING</button>
         </div>
     </div>
     </div>

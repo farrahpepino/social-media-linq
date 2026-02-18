@@ -50,7 +50,6 @@ export class Register {
     )
     .subscribe({
       next: (res) => {
-        console.log('Register success', res);
         this.route.navigateByUrl('/home').then(() => {
           history.replaceState(null, '', '/home'); 
         });      

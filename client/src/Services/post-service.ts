@@ -59,8 +59,8 @@ export class PostService {
     .pipe(tap(posts => this.profilePostsSubject.next(posts)));
   }
 
-  getFeed(userId: string): Observable<PostModel[]>{
-    return this.http.get<PostModel[]>(`${this.apiUrl}/get-feed/${userId}`, {withCredentials: true})
+  getFeed(): Observable<PostModel[]>{
+    return this.http.get<PostModel[]>(`${this.apiUrl}/get-feed`, {withCredentials: true})
     .pipe(tap(posts => this.feedPostsSubject.next(posts)));
 
   }

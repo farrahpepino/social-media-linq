@@ -7,6 +7,6 @@ namespace server.Repositories {
         Task<bool> DeletePost(string id);
         Task<PostDto> GetPostById(string id);
         Task<IEnumerable<PostDto>> GetProfilePosts(string userId);
-        Task<IEnumerable<PostDto>> GetFeed();
+        Task<IEnumerable<PostDto>> GetFeed(string userId);
     }
 }

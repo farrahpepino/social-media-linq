@@ -17,7 +17,7 @@ export class Home implements OnInit {
   constructor(private postService: PostService) {}
 
   ngOnInit(): void {
-    this.postService.getFeed('change-this').subscribe({
+    this.postService.getFeed().subscribe({
       next: (res) => {
         this.posts = res;
       },
