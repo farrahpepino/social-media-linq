@@ -91,8 +91,10 @@ namespace server.Repositories {
                     )
                     .OrderByDescending(p => p.CreatedAt)
                     .ToListAsync();
-                    }
+                    
 
             return feed;
+
+        }
     }
 }

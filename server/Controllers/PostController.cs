@@ -65,7 +65,7 @@ namespace server.Controllers {
         }
 
         [Authorize]
-        [HttpGet("get-feed}")]
+        [HttpGet("get-feed")]
         public async Task<IActionResult> GetFeed(){
             
             var userId = User.FindFirst(System.Security.Claims.ClaimTypes.NameIdentifier)?.Value;
