@@ -1,6 +1,6 @@
 
 <div *ngFor="let user of users" class="container">
-    <button type="button" class="bt-transparent">
+    <button type="button" class="bt-transparent" (click)="goToProfile(user.username!)">
         {{ user.username }}
     </button>
 </div>

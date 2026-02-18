@@ -5,6 +5,7 @@ import { PostService } from '../../../Services/post-service';
 import { Output } from '@angular/core';
 import { EventEmitter } from '@angular/core';
 import { PostModel } from '../../../Models/PostModel';
+import { User } from '../../../Models/User';
 
 @Component({
   selector: 'app-post',
@@ -17,6 +18,7 @@ export class Post implements OnInit, OnDestroy {
   showForm = false;
   today: Date = new Date();
   authorId: string = '';
+  user: User | null = null;
 
   private timerId!: any;
 
@@ -49,8 +51,9 @@ export class Post implements OnInit, OnDestroy {
   submitPost() {
     const content = this.postInput.nativeElement.innerText.trim();
 
-    const profile = this.auth.getProfile().subscribe({
+    this.auth.getProfile().subscribe({
       next: (res) => {
+        this.user = res;
         this.postService.submitPost({
           authorId: res.id!,
           content: content

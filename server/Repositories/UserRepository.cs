@@ -18,5 +18,11 @@ namespace server.Repositories {
 
             return result;
         }
+
+        public async Task<User?> GetUser(string username){
+            return await _context.Users  
+                        .FirstOrDefaultAsync(u => u.Username == username);
+
+        }
     }
 }

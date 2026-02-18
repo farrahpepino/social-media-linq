@@ -17,5 +17,12 @@ export class UserService {
       { withCredentials: true }
     );
   }
+
+  getUser(username: string): Observable<User> {
+    return this.http.get<User>(
+      `${this.apiUrl}/${username}`,
+      { withCredentials: true }
+    );
+  }
   
 }

@@ -12,5 +12,10 @@ namespace server.Services {
         public async Task<IEnumerable<User>> SearchUser(string input){
             return await _repository.SearchUser(input);
         }
+
+        public async Task<User> GetUser(string username){
+            var result = await _repository.GetUser(username);
+            return result;
+        }
     }
 }

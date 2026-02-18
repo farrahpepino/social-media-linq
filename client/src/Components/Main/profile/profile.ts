@@ -6,6 +6,8 @@ import { PostService } from '../../../Services/post-service';
 import { PostModel } from '../../../Models/PostModel';
 import { AuthService } from '../../../Services/auth-service';
 import { User } from '../../../Models/User';
+import { ActivatedRoute } from '@angular/router';
+import { UserService } from '../../../Services/user-service';
 
 @Component({
   selector: 'app-profile',
@@ -16,16 +18,33 @@ import { User } from '../../../Models/User';
 export class Profile implements OnInit {
   posts: PostModel[] = [];
   selectedPost: string | null = null;
+  username: string = '';
+  user: User | null = null;
 
-  constructor(private postService: PostService) {}
+  constructor(private postService: PostService, private aRoute: ActivatedRoute, private userService: UserService) {}
 
   ngOnInit(): void {
-    this.postService.getFeed('change-this').subscribe({
+    this.aRoute.paramMap.subscribe(params => {
+      this.username = params.get('username')!;
+      this.loadProfile(this.username);
+    });
+  }
+
+  loadProfile(username: string) {
+    this.userService.getUser(username).subscribe({
       next: (res) => {
-        this.posts = res;
+        this.user = res;
+        this.postService.getProfilePosts(res.id!).subscribe({
+          next: (response) => {
+            this.posts = response;
+          },
+          error: (err) => {
+            console.error("Unable to fetch posts:", err);
+          }
+        });
       },
       error: (err) => {
-        console.error("Unable to fetch posts:", err);
+        console.error("Unable to get user's data", err);
       }
     });
   }

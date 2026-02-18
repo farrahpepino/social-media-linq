@@ -46,7 +46,14 @@ export class NavbarMobile {
   }
 
   goToProfile(){
-    this.route.navigateByUrl('/profile');
+    this.auth.getProfile().subscribe({
+      next: (res) => {
+        this.route.navigate(['/user', res!.username]);
+      },
+      error: (err) => {
+        console.error("Unable to fetch user's data", err);
+      }
+    });
   }
 
   signOut(){

@@ -28,6 +28,19 @@ namespace server.Controllers{
             return Ok(result);
         }
 
+        [Authorize]
+        [HttpGet("{username}")]
+        public async Task<IActionResult> GetUser(string username) {
+
+            var result = await _service.GetUser(username);
+
+            if (result == null) {
+                return NotFound();
+            }
+
+            return Ok(result);
+        }
+
 
 
     }
