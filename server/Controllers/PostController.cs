@@ -72,8 +72,8 @@ namespace server.Controllers {
             var res = await _service.GetFeed(userId);
 
             if(res==null){
-                        return NotFound();
-                    }
+                return NotFound();
+            }
 
             return Ok(res);
 
