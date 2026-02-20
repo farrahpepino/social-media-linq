@@ -103,6 +103,50 @@ namespace server.Controllers {
             return Ok(res);
         }
 
+        [HttpGet("comments/{postId}")]
+        public async Task<IActionResult> GetComments(string postId){
+            var res = await _service.GetComments(postId);
+
+            if(res==null){
+                return NotFound();
+            }
+
+            return Ok(res);
+        }
+
+        [HttpGet("likes/{postId}")]
+        public async Task<IActionResult> GetLikes(string postId){
+            var res = await _service.GetLikes(postId);
+
+            if(res==null){
+                return NotFound();
+            }
+            return Ok(res);
+        }
+
+        [HttpDelete("comment/{id}")]
+        [Authorize] 
+        public async Task<IActionResult> DeleteComment(string id) {
+            var res = await _service.DeleteComment(id);
+
+            if (res == false) {
+                return BadRequest("Unable to delete a comment.");
+            }
+
+            return Ok();
+        }
+
+        [HttpDelete("like/{id}")]
+        [Authorize] 
+        public async Task<IActionResult> DeleteLike(string id) {
+            var res = await _service.DeleteLike(id);
+
+            if (res == false) {
+                return BadRequest("Unable to unlike post.");
+            }
+
+            return Ok();
+        }
 
         
     }

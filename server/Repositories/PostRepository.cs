@@ -26,7 +26,6 @@ namespace server.Repositories {
             await _context.SaveChangesAsync();
 
             return true;
-
         }
 
         public async Task<PostDto> GetPostById(string id){
@@ -106,6 +105,66 @@ namespace server.Repositories {
         public async Task<bool> LikePost (Like like) {
             _context.Likes.Add(like);
             await _context.SaveChangesAsync();
+            return true;
+        }
+
+        public async Task<IEnumerable<CommentDto>> GetComments(string postId){
+            return await _context.Comments
+                .Where(c => c.PostId == postId)
+                .Join(
+                _context.Users,
+                c => c.UserId,
+                u => u.Id,
+                (c, u) => new CommentDto{
+                    Id = c.Id,
+                    PostId = c.PostId,
+                    UserId = c.UserId,
+                    Username = u.Username,
+                    Content = c.Content,
+                    CreatedAt = c.CreatedAt
+                }
+                )
+                .ToListAsync();
+        }
+
+         public async Task<IEnumerable<LikeDto>> GetLikes(string postId){
+            return await _context.Likes
+                .Where(l => l.PostId == postId)
+                .Join(
+                _context.Users,
+                l => l.UserId,
+                u => u.Id,
+                (l, u) => new LikeDto{
+                    Id = l.Id,
+                    PostId = l.PostId,
+                    UserId = l.UserId,
+                    Username = u.Username,
+                    CreatedAt = l.CreatedAt
+                }
+                )
+                .ToListAsync();
+        }
+
+        public async Task<bool> DeleteComment (string id) {
+            var comment = await _context.Comments.FirstOrDefaultAsync(c => c.Id == id);
+            if (comment == null)
+                return false;
+
+            _context.Comments.Remove(comment);
+            await _context.SaveChangesAsync();
+
+            return true;
+
+        }
+
+        public async Task<bool> DeleteLike (string id) {
+            var like = await _context.Likes.FirstOrDefaultAsync(l => l.Id == id);
+            if (like == null)
+                return false;
+
+            _context.Likes.Remove(like);
+            await _context.SaveChangesAsync();
+
             return true;
         }
 

@@ -37,5 +37,22 @@ namespace server.Services {
         public async Task<bool> LikePost (Like like) {
             return await _repository.LikePost(like);
         }
+
+        public async Task<IEnumerable<CommentDto>> GetComments(string postId){
+            return await _repository.GetComments(postId);
+        }
+
+        public async Task<IEnumerable<LikeDto>> GetLikes(string postId){
+            return await _repository.GetLikes(postId);
+        }
+
+        public async Task<bool> DeleteComment (string id) {
+            return await _repository.DeleteComment(id);
+        }
+
+        public async Task<bool> DeleteLike (string id) {
+            return await _repository.DeleteLike(id);
+        }
+
     }
 }

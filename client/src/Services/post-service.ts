@@ -67,11 +67,19 @@ export class PostService {
   }
 
   commentPost(comment: Comment): Observable<Comment> {
-    return this.http.post<Comment>(`${this.apiUrl}`, comment, {withCredentials: true})
+    return this.http.post<Comment>(`${this.apiUrl}/comment`, comment, {withCredentials: true})
   }
 
   likePost(like: Like): Observable<boolean> {
-    return this.http.post<boolean>(`${this.apiUrl}`, like, {withCredentials: true})
+    return this.http.post<boolean>(`${this.apiUrl}/like`, like, {withCredentials: true})
+  }
+
+  getComments(postId: string): Observable<Comment[]> {
+    return this.http.get<Comment[]>(`${this.apiUrl}/comments/${postId}`, {withCredentials: true})
+  }
+
+  getLikes(postId: string): Observable<Like[]> {
+    return this.http.get<Comment[]>(`${this.apiUrl}/likes/${postId}`, {withCredentials: true})
   }
 
 }

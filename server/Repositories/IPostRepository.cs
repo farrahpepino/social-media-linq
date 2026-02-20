@@ -10,5 +10,9 @@ namespace server.Repositories {
         Task<IEnumerable<PostDto>> GetFeed(string userId);
         Task<Comment> CommentPost(Comment comment);
         Task<bool> LikePost(Like Like);
+        Task<IEnumerable<CommentDto>> GetComments(string postId);
+        Task<IEnumerable<LikeDto>> GetLikes(string postId);
+        Task<bool> DeleteComment(string id);
+        Task<bool> DeleteLike(string id);
     }
 }
