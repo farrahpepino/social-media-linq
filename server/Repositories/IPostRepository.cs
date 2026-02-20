@@ -8,5 +8,7 @@ namespace server.Repositories {
         Task<PostDto> GetPostById(string id);
         Task<IEnumerable<PostDto>> GetProfilePosts(string userId);
         Task<IEnumerable<PostDto>> GetFeed(string userId);
+        Task<Comment> CreateComment(Comment comment);
+        Task LikePost(string postId, string userId);
     }
 }
