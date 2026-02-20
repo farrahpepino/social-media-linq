@@ -39,8 +39,8 @@ namespace server.Data {
         public DbSet<User> Users { get; set; }  
         public DbSet<Post> Posts { get; set; } 
         public DbSet<Follower> Followers { get; set; } 
-        public DbSet<Follower> Comments { get; set; } 
-        public DbSet<Follower> Likes { get; set; } 
+        public DbSet<Comment> Comments { get; set; } 
+        public DbSet<Like> Likes { get; set; } 
          
     }
 }

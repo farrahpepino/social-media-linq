@@ -96,5 +96,18 @@ namespace server.Repositories {
             return feed;
 
         }
+
+        public async Task<Comment> CommentPost (Comment comment) {
+            _context.Comments.Add(comment);
+            await _context.SaveChangesAsync();
+            return comment;
+        }
+
+        public async Task<bool> LikePost (Like like) {
+            _context.Likes.Add(like);
+            await _context.SaveChangesAsync();
+            return true;
+        }
+
     }
 }

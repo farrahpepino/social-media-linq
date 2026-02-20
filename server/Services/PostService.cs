@@ -29,5 +29,13 @@ namespace server.Services {
         public async Task<IEnumerable<PostDto>> GetFeed(string userId) {
             return await _repository.GetFeed(userId);
         }
+
+        public async Task<Comment> CommentPost (Comment comment) {
+            return await _repository.CommentPost(comment);
+        }
+
+        public async Task<bool> LikePost (Like like) {
+            return await _repository.LikePost(like);
+        }
     }
 }

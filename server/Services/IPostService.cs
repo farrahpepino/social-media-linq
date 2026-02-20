@@ -8,7 +8,7 @@ namespace server.Services {
         Task<PostDto> GetPostById(string id);
         Task<IEnumerable<PostDto>> GetProfilePosts(string userId);
         Task<IEnumerable<PostDto>> GetFeed(string userId);
-        Task<Comment> CreateComment(Comment comment);
-        Task LikePost(string postId, string userId);
+        Task<Comment> CommentPost(Comment comment);
+        Task<bool> LikePost(Like Like);
     }
 }
