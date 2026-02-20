@@ -78,6 +78,32 @@ namespace server.Controllers {
             return Ok(res);
 
         }
+
+        [HttpPost("comment")]
+        [Authorize] 
+        public async Task<IActionResult> CommentPost([FromBody] Comment comment) {
+            var res = await _service.CommentPost(comment);
+
+            if (res == null) {
+                return BadRequest("Unable to comment.");
+            }
+
+            return Ok(res);
+        }
+
+        [HttpPost("like")]
+        [Authorize] 
+        public async Task<IActionResult> LikePost([FromBody] Like like) {
+            var res = await _service.LikePost(like);
+
+            if (res == null) {
+                return BadRequest("Unable to like post.");
+            }
+
+            return Ok(res);
+        }
+
+
         
     }
 }
