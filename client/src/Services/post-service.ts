@@ -82,4 +82,12 @@ export class PostService {
     return this.http.get<Comment[]>(`${this.apiUrl}/likes/${postId}`, {withCredentials: true})
   }
 
+  deleteComment(id: string){
+    return this.http.delete(`${this.apiUrl}/comment/${id}`, {withCredentials: true});
+  }
+
+  deleteLike(id: string){
+    return this.http.delete(`${this.apiUrl}/like/${id}`, {withCredentials: true});
+  }
+
 }
