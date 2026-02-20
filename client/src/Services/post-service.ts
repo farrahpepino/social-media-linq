@@ -3,6 +3,8 @@ import { Injectable } from '@angular/core';
 import { PostModel } from '../Models/PostModel';
 import { Observable } from 'rxjs';
 import { BehaviorSubject, tap } from 'rxjs';
+import { Comment } from '../Models/Comment';
+import { Like } from '../Models/Like';
 
 @Injectable({
   providedIn: 'root',
@@ -62,7 +64,14 @@ export class PostService {
   getFeed(): Observable<PostModel[]>{
     return this.http.get<PostModel[]>(`${this.apiUrl}/get-feed`, {withCredentials: true})
     .pipe(tap(posts => this.feedPostsSubject.next(posts)));
+  }
 
+  commentPost(comment: Comment): Observable<Comment> {
+    return this.http.post<Comment>(`${this.apiUrl}`, comment, {withCredentials: true})
+  }
+
+  likePost(like: Like): Observable<boolean> {
+    return this.http.post<boolean>(`${this.apiUrl}`, like, {withCredentials: true})
   }
 
 }
