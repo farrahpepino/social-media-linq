@@ -8,11 +8,11 @@ import { User } from '../../../Models/User';
 import { ActivatedRoute } from '@angular/router';
 import { UserService } from '../../../Services/user-service';
 import { AuthService } from '../../../Services/auth-service';
-import { P } from '@angular/cdk/keycodes';
+import { Loading } from '../../Shared/loading/loading';
 
 @Component({
   selector: 'app-profile',
-  imports: [Navbar, Post, CommonModule],
+  imports: [Navbar, Post, CommonModule, Loading],
   templateUrl: './profile.html',
   styleUrl: './profile.css',
 })
@@ -25,14 +25,17 @@ export class Profile implements OnInit {
   followStatus: boolean = false;
   following: User[] | null = null;
   followers: User[] | null = null;
+  loading: boolean = true;
 
 
   constructor(private postService: PostService, private aRoute: ActivatedRoute, private userService: UserService, private auth: AuthService) {}
 
   ngOnInit(): void {
+
     this.aRoute.paramMap.subscribe(params => {
       this.username = params.get('username')!;
       this.loadProfile(this.username);
+      this.loading = false;
     });
 
   }
@@ -67,7 +70,6 @@ export class Profile implements OnInit {
       error: (err) => {
         console.error("Unable to get user's data", err);
       }
-
     });
 
     this.auth.getProfile().subscribe({
@@ -78,8 +80,7 @@ export class Profile implements OnInit {
         console.error("Unable to fetch user's data ", err);
       }
     });
-
-  }
+    }
 
   toggleFollow() {  
     if (!this.loggedIn?.id) return;
