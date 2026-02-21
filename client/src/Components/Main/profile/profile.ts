@@ -87,6 +87,9 @@ export class Profile implements OnInit {
   
     if (this.followStatus==false){
       this.userService.followUser(this.user.id).subscribe({
+        next: () => {
+          this.followStatus = true;
+        },
         error: err => console.error(err)
       });
       return;
