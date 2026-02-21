@@ -9,7 +9,7 @@
             <button (click)="toggleFollow()" *ngIf="loggedIn?.id != user?.id"> {{ followStatus ? 'FOLLOWING' : 'FOLLOW' }} </button>
         </div>
         <div class="row">
-            <button>{{followers?.length || 0}} FOLLOWING</button>
+            <button>{{followers?.length || 0}} FOLLOWERS</button>
             <button>{{following?.length || 0}} FOLLOWING</button>
         </div>
     </div>

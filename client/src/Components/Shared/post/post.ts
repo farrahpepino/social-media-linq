@@ -29,6 +29,11 @@ export class Post implements OnInit, OnDestroy {
   constructor (private auth: AuthService, private postService: PostService) {}
   ngOnInit() {
     this.updateTime();
+    this.auth.getProfile().subscribe({
+      next: (res) => {
+        this.user = res;
+      }
+    })
   }
 
   ngOnDestroy() {
@@ -53,8 +58,6 @@ export class Post implements OnInit, OnDestroy {
 
     this.auth.getProfile().subscribe({
       next: (res) => {
-  
-        this.user = res;
         this.postService.submitPost({
           authorId: res.id!,
           content: content
