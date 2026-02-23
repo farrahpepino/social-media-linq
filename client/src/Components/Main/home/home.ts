@@ -13,6 +13,7 @@ import { PostModel } from '../../../Models/PostModel';
 export class Home implements OnInit {
   posts: PostModel[] = [];
   selectedPost: string | null = null;
+  liked = false;
 
   constructor(private postService: PostService) {}
 
@@ -45,5 +46,9 @@ export class Home implements OnInit {
 
   onPostCreated(newPost: PostModel) {
     this.posts.unshift(newPost); 
+  }
+
+  toggleLike() {
+    this.liked = !this.liked;
   }
 }

@@ -97,3 +97,27 @@
     border: none;
     padding: 15px;
 }
+
+// like
+.bt-transparent svg {
+    fill: #4A5A63;
+    transition: fill 0.2s ease;
+  }
+  
+.like:hover svg {
+    fill: #C96A6A;
+}
+  
+.bt-transparent.liked svg {
+    fill: #B85454;
+}
+  
+.bt-transparent.liked:hover svg {
+    fill: #A94444;
+}
+
+.react-container button {
+    padding: 0;
+    margin: 15px 0px;
+    margin-right: 10px; 
+}

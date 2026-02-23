@@ -26,6 +26,7 @@ export class Profile implements OnInit {
   following: User[] | null = null;
   followers: User[] | null = null;
   loading: boolean = true;
+  liked = false;
 
 
   constructor(private postService: PostService, private aRoute: ActivatedRoute, private userService: UserService, private auth: AuthService) {}
@@ -121,6 +122,10 @@ export class Profile implements OnInit {
 
   onPostCreated(newPost: PostModel) {
     this.posts.unshift(newPost); 
+  }
+
+  toggleLike() {
+    this.liked = !this.liked;
   }
 }
 
