@@ -18,7 +18,7 @@ builder.Services.AddCors(options =>
     options.AddPolicy("CorsPolicy",
         builder =>
         {
-            builder.WithOrigins("http://localhost:4200") 
+            builder.WithOrigins("https://loop-social-app.netlify.app") 
                    .AllowAnyHeader()
                    .AllowAnyMethod()
                    .AllowCredentials();
